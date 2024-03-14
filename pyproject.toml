@@ -31,7 +31,7 @@ classifiers = [
 ]
 
 [project.scripts]
-datacollector = "datacollector.__main__:main"
+datacollector = "datacollector.datacollector:cli"
 
 [build-system]
 requires = ["pdm-backend"]
