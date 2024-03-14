@@ -19,7 +19,6 @@ import yaml
 from appdirs import AppDirs  # type: ignore
 from filelock import FileLock, Timeout  # type: ignore
 from pyzabbix import ZabbixMetric, ZabbixSender  # type: ignore
-
 from sarad.cluster import SaradCluster
 
 LOGLEVEL = logging.DEBUG
@@ -90,28 +89,28 @@ except KeyError:
     CLIENT_ID = socket.gethostname()
 
 
-def on_connect(client, userdata, flags, result_code):
+def on_connect(client, userdata, flags, reason_code, properties):
     # pylint: disable=unused-argument
     """Will be carried out when the client connected to the MQTT broker."""
-    if result_code:
-        logger.info("Connection to MQTT broker failed. result_code=%s", result_code)
+    if reason_code:
+        logger.info("Connection to MQTT broker failed. reason_code=%s", reason_code)
     else:
         logger.info("Connected with MQTT broker.")
 
 
-def on_disconnect(client, userdata, result_code):
+def on_disconnect(client, userdata, flags, reason_code, properties):
     # pylint: disable=unused-argument
     """Will be carried out when the client disconnected
     from the MQTT broker."""
-    if result_code:
+    if reason_code:
         logger.info(
-            "Disconnection from MQTT broker failed. result_code=%s", result_code
+            "Disconnection from MQTT broker failed. reason_code=%s", reason_code
         )
     else:
         logger.info("Gracefully disconnected from MQTT broker.")
 
 
-mqtt_client = mqtt.Client()
+mqtt_client = mqtt.Client(mqtt.CallbackAPIVersion.VERSION2)
 mqtt_client.on_connect = on_connect
 mqtt_client.on_disconnect = on_disconnect
 
