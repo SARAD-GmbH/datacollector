@@ -5,15 +5,20 @@ the [*sarad* library](https://github.com/SARAD-GmbH/sarad). It allows to send
 measuring values to a Zabbix server or publish MQTT messages or to display
 values.
 
+## Installation
+### Using Pip
+```
+pip install git+https://github.com/SARAD-GmbH/datacollector.git
+```
+
+### Using Pipx
+```
+pipx install git+https://github.com/SARAD-GmbH/datacollector.git
+```
+
 ## Getting started
-Requires Python 3.
 
-Clone the repository to your local computer and move into the directory.
-```
-sudo pip install --editable ./
-```
-
-Afterwards you should be able to run the sample application by for instance calling
+After the installation you should be able to run the application by for instance calling
 ```
 datacollector cluster
 ```
