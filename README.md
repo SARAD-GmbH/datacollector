@@ -28,6 +28,14 @@ Get further help with
 datacollector --help
 ```
 
+The application will create a log file `datacollector.log` as well as a lock
+file for the cluster `mycluster.lock` in the same directory the command line
+application is started from.
+
+A configuration file `datacollector.conf` (refer to the example in
+`src/datacollector/`) can be placed in the same directory to set e.g. the
+address of your MQTT broker.
+
 *Read the code!*
 
 [![pdm-managed](https://img.shields.io/badge/pdm-managed-blueviolet)](https://pdm-project.org)
